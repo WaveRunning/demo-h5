@@ -27,7 +27,7 @@ jobs:
           cache: 'pnpm'
 
       - name: install
-        run: pnpm add -D vue-tsc@latest typescript@5.6.0 && pnpm install
+        run: pnpm add -D vue-tsc@latest typescript@latest && pnpm install
 
       - name: Run Build Script
         run: pnpm build
