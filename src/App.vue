@@ -29,6 +29,7 @@
             v-if="item.type === 'video'"
             :poster="item.cover"
             controls
+            muted
             playsinline
             class="media"
             webkit-playsinline
@@ -37,6 +38,7 @@
             x5-video-player-type="h5"
             x5-video-player-fullscreen="false"
             t7-video-player-type="inline"
+            preload="auto"
           >
             <source :src="item.url" type="video/mp4" />
           </video>
