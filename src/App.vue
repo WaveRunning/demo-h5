@@ -29,16 +29,18 @@
             v-if="item.type === 'video'"
             controls
             muted
+            autoplay
             playsinline
             class="media"
             webkit-playsinline
             x5-playsinline
             x-webkit-airplay="true"
-            x5-video-player-type="h5-page"
+            x5-video-player-type="h5"
             x5-video-player-fullscreen="false"
             x5-video-orientation="portrait"
             t7-video-player-type="inline"
             preload="auto"
+            @click="handleVideoClick"
           >
             <source :src="item.url" type="video/mp4" />
           </video>
@@ -91,6 +93,24 @@ const pullThreshold = 60
 const pullDistance = ref(-pullThreshold) 
 const startY = ref(0)
 
+const handleVideoClick = (e) => {
+  const video = e.target;
+  if (video.readyState < 3) {
+    resetVideoState(video);
+    return;
+  }
+
+  video.muted = true; // 始终静音以绕过自动播放限制
+  const playPromise = video.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // 降级处理：显示自定义播放按钮
+      video.setAttribute('data-require-action', 'true');
+      video.controls = false;
+    });
+  }
+};
 const generateMockData = async (type, page = 1) => {
   const getRandomSize = () => Math.floor(200 + Math.random() * 300)
   return Array.from({ length: 10 }, (_, i) => {
