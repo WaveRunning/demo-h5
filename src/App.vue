@@ -29,7 +29,6 @@
             v-if="item.type === 'video'"
             controls
             muted
-            autoplay
             playsinline
             class="media"
             webkit-playsinline
