@@ -27,7 +27,6 @@
         <div v-for="item in col" :key="item.id" class="card">
           <video
             v-if="item.type === 'video'"
-            :poster="item.cover"
             controls
             muted
             playsinline
