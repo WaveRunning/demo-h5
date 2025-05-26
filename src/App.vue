@@ -1,6 +1,7 @@
 <template>
   <div class="container" @scroll.passive="handleScroll">
     <div class="tip">
+      <p>当前路由参数type为：{{currentType}}</p>
       <p>因为所有图片视频资源都是加载第三方网站且都是随机加载，所以实现不同type的不同内容意义不大</p>
       <p>不同url的逻辑是： vue举例可以vueroute获取query参数 根据参数动态获取数据进行渲染.</p>
     </div>
@@ -47,7 +48,13 @@ const props = defineProps({
     default: 'type1'
   }
 })
-
+const currentType = computed(() => {
+  const location = window.location.search
+  const params = new URLSearchParams(location);
+  const type = params.get('type');
+  console.log(type, '312')
+  return type
+})
 // 瀑布流配置
 const COLUMN_COUNT = 2
 const columns = ref(Array.from({ length: COLUMN_COUNT }, () => []))
