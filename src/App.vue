@@ -34,8 +34,9 @@
             webkit-playsinline
             x5-playsinline
             x-webkit-airplay="true"
-            x5-video-player-type="h5"
+            x5-video-player-type="h5-page"
             x5-video-player-fullscreen="false"
+            x5-video-orientation="portrait"
             t7-video-player-type="inline"
             preload="auto"
           >
